@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "forite.cleancurios.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "cleancurios.refmap.json",
+  "mixins": [
+    "client.AbstractContainerMenuAccessor",
+    "client.CurioSlotAccessor",
+    "client.MixinCuriosCuriosContainer"
+  ],
+  "client": [
+    "client.MixinCuriosCuriosButton",
+    "client.MixinCuriosCuriosScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

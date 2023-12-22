@@ -1,0 +1,29 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="cleancurios"
+version="${file.jarVersion}"
+displayName="Clean Curios"
+credits="Curios API for the original mod this is an addon for"
+authors="Forite"
+description='''
+Cleaner GUI for Curios API. Removes the Curios toggle button and has them always visible.
+Visually integrates Curios into the main inventory.
+Special Behavior for 5-7 Curio Slots: Some slots appear above the offhand slot.
+'''
+[[dependencies.cleancurios]]
+   modId="forge"
+   mandatory=true
+   versionRange="[47,)"
+   side="BOTH"
+[[dependencies.cleancurios]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.20.1]"
+   side="BOTH"
+[[dependencies.cleancurios]]
+    modId="curios"
+    mandatory=true
+    versionRange="[5.4.6+1.20.1]"
+    side="CLIENT"
