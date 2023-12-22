@@ -20,3 +20,9 @@ to emulate what this addon implements, but since it does not, this addon exists.
 I realize this is pretty inflexible of me, so I apologize. Perhaps these changes might fare well in the base mod, which I believe is actively maintained.
 
 You CAN still add issues here for non-feature requests and I WILL maintain those.
+
+## Licensing
+
+Clean Curios code is released under MIT
+
+Clean Curios asset is released under LGPL-3.0. The original texture was from Curios API and the relevant notices can be found in the directory containing the asset.
