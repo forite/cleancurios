@@ -28,6 +28,7 @@ public abstract class MixinCuriosCuriosContainer {
         return 8;
     }
 
+    // Get number of curio slots that will exist
     @Inject(method = "lambda$new$0", at = @At("HEAD"))
     private void new$lambda$setSlotsAdded(ICuriosItemHandler curios, CallbackInfo ci) {
         local$slotsAdded = getSlotCount(curios);
@@ -36,9 +37,10 @@ public abstract class MixinCuriosCuriosContainer {
     // Special behavior: between 4-7 charm slots, move any past 4 to above the offhand slot
     @Redirect(method = "lambda$new$0", at = @At(value = "INVOKE", target = "top/theillusivec4/curios/common/inventory/container/CuriosContainer.addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"))
     private Slot new$lambda$specialCaseCurios(CuriosContainer instance, Slot slot) {
-        return ((AbstractContainerMenuAccessor)instance).addSlot$access(getSlot(instance, slot));
+        return ((AbstractContainerMenuAccessor)instance).addSlot$invoke(getSlot(instance, slot));
     }
 
+    // Get number of curio slots that will exist
     @Inject(method = "lambda$scrollToIndex$2", at = @At("HEAD"))
     private void scrollToIndex$lambda$setSlotsAdded(int indexIn, ICuriosItemHandler curios, CallbackInfo ci) {
         local$slotsAdded = getSlotCount(curios);
@@ -47,7 +49,7 @@ public abstract class MixinCuriosCuriosContainer {
     // Special behavior: between 4-7 charm slots, move any past 4 to above the offhand slot
     @Redirect(method = "lambda$scrollToIndex$2", at = @At(value = "INVOKE", target = "top/theillusivec4/curios/common/inventory/container/CuriosContainer.addSlot(Lnet/minecraft/world/inventory/Slot;)Lnet/minecraft/world/inventory/Slot;"))
     private Slot scrollToIndex$lambda$specialCaseCurios(CuriosContainer instance, Slot slot) {
-        return ((AbstractContainerMenuAccessor)instance).addSlot$access(getSlot(instance, slot));
+        return ((AbstractContainerMenuAccessor)instance).addSlot$invoke(getSlot(instance, slot));
     }
 
     private int getSlotCount(ICuriosItemHandler curios) {
@@ -66,12 +68,13 @@ public abstract class MixinCuriosCuriosContainer {
         CurioSlot curioSlot = (CurioSlot) slot;
         int slotIndex = (slot.y - 8) / 18;
 
+        // PRE: local$slotsAdded is correctly set from an earlier mixin
+        //
         // if less than 5 slots, normal behavior
         // if more than 7 slots, normal behavior
         // if 5-7 slots, new behavior
         int x;
         int y = slot.y;
-        IDynamicStackHandler handler = (IDynamicStackHandler) curioSlot.getItemHandler();
         if (slotIndex > 3 && slotIndex < 7 && local$slotsAdded > 4 && local$slotsAdded < 8) {
             x = 77;
             y = 8 + (slotIndex - 4) * 18;
